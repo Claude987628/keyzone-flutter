@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
-import 'screens/forum_screen.dart';
+import 'Screens/forum_screen.dart';
+import 'theme/app_colors.dart';
 
 void main() {
-  runApp(const KeyzoneApp());
+  runApp(const MyApp());
 }
 
-class KeyzoneApp extends StatelessWidget {
-  const KeyzoneApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Keyzone Forum",
-      theme: ThemeData(primarySwatch: Colors.blue),
+      title: 'Keyzone',
+
+      theme: ThemeData(
+        primaryColor: AppColors.primary,
+        scaffoldBackgroundColor: AppColors.background,
+
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: AppColors.primary,
+        ),
+      ),
+
       home: const ForumScreen(),
     );
   }

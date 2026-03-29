@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class TopicService {
-  static Future<List> getTopics(int forumId) async {
+class ReplyService {
+  static Future<List> getReplies(int topicId) async {
     final response = await http.get(
-      Uri.parse("http://127.0.0.1:8000/api/forums/$forumId/topics"),
+      Uri.parse("http://127.0.0.1:8000/api/replies/$topicId"),
     );
 
     if (response.statusCode == 200) {
@@ -14,21 +14,19 @@ class TopicService {
     }
   }
 
-  static Future<bool> createTopic({
-    required int forumId,
-    required String title,
+  static Future<bool> createReply({
+    required int topicId,
     required String content,
     required String author,
   }) async {
     final response = await http.post(
-      Uri.parse("http://127.0.0.1:8000/api/topics"),
+      Uri.parse("http://127.0.0.1:8000/api/replies"),
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
       },
       body: jsonEncode({
-        "forum_id": forumId,
-        "title": title,
+        "topic_id": topicId,
         "content": content,
         "author": author,
       }),
